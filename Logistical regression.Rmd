@@ -1,0 +1,39 @@
+---
+title: "Logistical Regression"
+author: "Dee Muralidharan"
+date: "August 17, 2017"
+output: html_document
+---
+## Exercise: logistic regression
+## ───────────────────────────────────
+
+##   Use the NH11 data set that we loaded earlier.
+
+##   1. Use glm to conduct a logistic regression to predict ever worked
+##      (everwrk) using age (age_p) and marital status (r_maritl).
+##   2. Predict the probability of working for each level of marital
+##      status.
+
+##   Note that the data is not perfectly clean and ready to be modeled. You
+##   will need to clean up at least some of the variables before fitting
+##   the model.
+
+```{r setup, include=FALSE}
+
+setwd ("D:/springboard Data science/Exercises/Linear Regression 2")
+NH11 <- readRDS("D:/springboard Data science/Exercises/Linear Regression 2/NatHealth2011.rds")
+str(NH11)
+levels(NH11$hypev)
+hyp.out <- glm (everwrk~ age_p + r_maritl, data = NH11,  family = "binomial")
+summary(hyp.out)
+```
+
+##   2. Predict the probability of working for each level of marital
+
+##      status.
+
+```{r}
+library(effects)
+plot(allEffects(hyp.out))
+```
+
